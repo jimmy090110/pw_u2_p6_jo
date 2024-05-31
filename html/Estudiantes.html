@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.ec.com/vue@3/dist/vue.global.js"></script>
 </head>
 
 <body>
@@ -14,7 +14,14 @@
         <header></header>
         <nav></nav>
         <section>
-            <button v-on="agregar">Agregar</button>
+
+            <label for="idNombre">Nombre</label>
+            <input v-model="nombre" id="idNombre" type="text">
+            <label for="idApellido">Apellido</label>
+            <!--<input v-model="apellido" id="idApellido" type="text">-->
+            <!--<button v-on:click="agregar">Agregar</button>-->
+            <input @keypress.enter="agregar2"  v-model="apellido"  type="text"  id="idApellido">
+ 
             <ul>
 
                 <!--<li>{{lista[0].nombre}} A: {{lista[0].apellido}}</li>
@@ -28,8 +35,8 @@
                 <li> {{lista[4]}}</li>-->
                 <li v-for="({nombre,apellido},index) in lista">
                     <!--Si quieroa cceder al objeto lo envuelvo {} y como segundo argumento pongo la palabra reservada index-->
-                    <h3>{{index+1}}-{{nombre}}</h3>
-                    <h4>{{apellido}}</h4>
+                    <h3 v-show="nombre!==null" >{{index+1}}-{{nombre}}</h3>
+                    <h4 v-show="apellido!==null" >{{apellido}}</h4>
 
                 </li>
             </ul>

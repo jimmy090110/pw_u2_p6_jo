@@ -4,8 +4,7 @@ const estudiantes = [{ nombre: "Jimmy", apellido: "Ortega" },
 { nombre: "Juan", apellido: "Teran" },
 { nombre: "Lucas", apellido: "Cayambe" },
 { nombre: "Andrea", apellido: "Paez" },
-{ nombre: "Tania", apellido: "Castillo" },
-{ nombre: "Pedro", apellido: "Martinez" }
+{ nombre: "Tania", apellido: "Castillo" }
 ];
 
 const app = Vue.createApp({
@@ -24,10 +23,17 @@ const app = Vue.createApp({
     return {
       mensaje: "Hola Mundo Propiedad Reactiva",
       valor: 7,
-      lista:estudiantes,
-      
+      lista: estudiantes,
+      nombre: null,
+      apellido: null
+
+
     }
+
+
+
   },
+  //Tomar enfasis de modificador de acceso
   //metodos
   methods: {
     cambiarTexto() {  // toda propiedad reactiva debe utilizar la palabra this
@@ -37,16 +43,30 @@ const app = Vue.createApp({
     sumar() {
       this.valor = this.valor + 100;
     },
-    agregar(){
-      const nuevo={
-        nombre:"Jimmy",
-        apellido:"Ortega"
+    agregar() {
+      console.log(this.nombre);
+      console.log(this.apellido);
+      const nuevo = {
+        nombre: this.nombre,
+        apellido: this.apellido
       }
       this.lista.unshift(nuevo);
+      this.resetear();
+    },
+    resetear() {
+      this.nombre = null;
+      this.apellido = null;
+    },
+    agregar2({ charCode }) {
+      // console.log(event)
+      console.log(charCode);
 
+      if (charCode !== 13) return;
+      if(this.nombre!==null && this.apellido!==null ){
+        this.agregar();
+      }
+      
     }
-
-
   }
 
 });
